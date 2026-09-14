@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://wi2cft7r1ihe"]
+
+[ext_resource type="Script" uid="uid://dox3h8ctyi4h2" path="res://Script/player.gd" id="1_cnkc8"]
+[ext_resource type="Script" uid="uid://bkl1a7d8ryntt" path="res://Script/spring_arm_3d.gd" id="2_i8vih"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wxucn"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_austa"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_mvknu"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1icel"]
+albedo_color = Color(0, 1, 0, 1)
+albedo_texture = SubResource("CanvasTexture_mvknu")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_austa"]
+
+[node name="Player" type="Node3D" unique_id=329057766 groups=["player"]]
+script = ExtResource("1_cnkc8")
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="." unique_id=732402177]
+
+[node name="SpringArm3D" type="SpringArm3D" parent="CharacterBody3D" unique_id=450001827]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.792364, -0.5495298)
+spring_length = 6.0
+script = ExtResource("2_i8vih")
+
+[node name="Camera3D" type="Camera3D" parent="CharacterBody3D/SpringArm3D" unique_id=38991891]
+transform = Transform3D(1, 0, 0, 0, 0.7430034, 0.6692876, 0, -0.6692876, 0.7430034, 0, 3.1512673, 1.7251759)
+
+[node name="Pivote" type="Node3D" parent="CharacterBody3D" unique_id=642844738]
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="CharacterBody3D/Pivote" unique_id=1838815106]
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="CharacterBody3D/Pivote/CSGCombiner3D" unique_id=670455679]
+transform = Transform3D(0.004829604, -0.018197665, -0.99982285, 0.6676246, -0.7443092, 0.01677206, -0.74448246, -0.6675872, 0.008554515, -0.07558906, 0.6743991, 0.37535298)
+layers = 0
+polygon = PackedVector2Array(0.44136947, 0.6572039, 0.23608041, 0.9016795, 0.6150409, 0.89294076, 0.9581891, 1.0616668, 0.74978805, 0.8395826, 0.6463877, 0.37765872)
+depth = 0.15
+material = SubResource("StandardMaterial3D_wxucn")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="CharacterBody3D/Pivote/CSGCombiner3D" unique_id=1040689979]
+mesh = SubResource("CapsuleMesh_austa")
+material = SubResource("StandardMaterial3D_1icel")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D" unique_id=323005268]
+shape = SubResource("CapsuleShape3D_austa")

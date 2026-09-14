@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://fiwlp6f2wd3q"]
+
+[ext_resource type="Script" uid="uid://bl8qnf2w6cndj" path="res://Script/moneda.gd" id="1_u6us8"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_austa"]
+albedo_color = Color(1, 1, 0, 1)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_austa"]
+radius = 0.17883553
+
+[node name="Moneda" type="Node3D" unique_id=1488349469]
+script = ExtResource("1_u6us8")
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="." unique_id=1360572564]
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="CSGCombiner3D" unique_id=979868331]
+radius = 0.17897047
+material = SubResource("StandardMaterial3D_austa")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1370779991]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1886284293]
+shape = SubResource("SphereShape3D_austa")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
