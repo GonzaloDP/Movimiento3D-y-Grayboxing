@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://wi2cft7r1ihe" path="res://Escenas/player.tscn" id="1_wxucn"]
 [ext_resource type="PackedScene" uid="uid://fiwlp6f2wd3q" path="res://Escenas/moneda.tscn" id="2_5sfon"]
+[ext_resource type="PackedScene" uid="uid://b2bi7d4ixsttc" path="res://Escenas/ui.tscn" id="3_bqhdr"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i8vih"]
 albedo_color = Color(0.21176471, 0.25882354, 1, 1)
@@ -87,3 +88,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.62619305, 4, -30)
 
 [node name="Moneda3" parent="." unique_id=886511831 instance=ExtResource("2_5sfon")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.626193, 1, -34)
+
+[node name="UI" parent="." unique_id=1525929635 instance=ExtResource("3_bqhdr")]

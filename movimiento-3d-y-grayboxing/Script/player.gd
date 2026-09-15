@@ -7,12 +7,18 @@ extends Node3D
 @export var impuslo_salto = 20.0
 @export var fuerza_dash = 50.0
 
+signal monedas_cambiaron(cantidad)
+
 var target_velocity = Vector3.ZERO
 var doble_salto = true
 var dash = true
 var haciendo_dash = false
 var ultima_direccion = Vector3.ZERO
 var contador_monedas = 0
+
+func _process(delta: float) -> void:
+	if contador_monedas == 3:
+		get_tree().quit()
 
 func _physics_process(delta: float) -> void:
 	var direction = Vector3.ZERO
@@ -75,4 +81,5 @@ func hacer_dash(direction: Vector3) -> void:
 
 func aumentar_moneda():
 	contador_monedas += 1
-	print(contador_monedas)
+	monedas_cambiaron.emit(contador_monedas)
+	#print(contador_monedas)

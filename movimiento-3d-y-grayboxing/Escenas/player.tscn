@@ -15,10 +15,10 @@ albedo_texture = SubResource("CanvasTexture_mvknu")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_austa"]
 
-[node name="Player" type="Node3D" unique_id=329057766 groups=["player"]]
+[node name="Player" type="Node3D" unique_id=329057766]
 script = ExtResource("1_cnkc8")
 
-[node name="CharacterBody3D" type="CharacterBody3D" parent="." unique_id=732402177]
+[node name="CharacterBody3D" type="CharacterBody3D" parent="." unique_id=732402177 groups=["player"]]
 
 [node name="SpringArm3D" type="SpringArm3D" parent="CharacterBody3D" unique_id=450001827]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.792364, -0.5495298)

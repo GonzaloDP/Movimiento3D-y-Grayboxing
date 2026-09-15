@@ -1,10 +1,13 @@
 [gd_scene format=3 uid="uid://b2bi7d4ixsttc"]
 
+[ext_resource type="Script" uid="uid://2dppslgdlpwg" path="res://Script/ui.gd" id="1_qkv3v"]
+
 [node name="UI" type="Node" unique_id=1525929635]
+script = ExtResource("1_qkv3v")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2039530024]
 
 [node name="Label" type="Label" parent="CanvasLayer" unique_id=1583791799]
-offset_right = 40.0
+offset_right = 85.0
 offset_bottom = 23.0
 text = "MONEDAS:"
