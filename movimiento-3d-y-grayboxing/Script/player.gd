@@ -14,11 +14,15 @@ var doble_salto = true
 var dash = true
 var haciendo_dash = false
 var ultima_direccion = Vector3.ZERO
-var contador_monedas = 0
+var contador_monedas: int
+
+func _ready() -> void:
+	contador_monedas = 0
 
 func _process(delta: float) -> void:
 	if contador_monedas == 3:
-		get_tree().quit()
+		get_tree().reload_current_scene()
+		#get_tree().quit()
 
 func _physics_process(delta: float) -> void:
 	var direction = Vector3.ZERO
@@ -39,6 +43,9 @@ func _physics_process(delta: float) -> void:
 	
 	if Input.is_action_just_pressed("dash") and dash and direction != Vector3.ZERO:
 		hacer_dash(direction)
+	
+	if Input.is_action_just_pressed("reiniciar"):
+		get_tree().reload_current_scene()
 	
 	if haciendo_dash:
 		player.move_and_slide()
@@ -82,4 +89,3 @@ func hacer_dash(direction: Vector3) -> void:
 func aumentar_moneda():
 	contador_monedas += 1
 	monedas_cambiaron.emit(contador_monedas)
-	#print(contador_monedas)

@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://bo88lvuvvy6lc"]
+
+[ext_resource type="Script" uid="uid://b8esif4g3o8xg" path="res://Script/ventana_final.gd" id="1_2yprt"]
+
+[node name="VentanaFinal" type="Control" unique_id=2020176710]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2yprt")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=258668653]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -213.0
+offset_top = -33.0
+offset_right = 210.0
+offset_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Reiniciar" type="Button" parent="VBoxContainer" unique_id=64724623]
+layout_mode = 2
+text = "REINICIAR"
+
+[node name="Salir" type="Button" parent="VBoxContainer" unique_id=1092857181]
+layout_mode = 2
+text = "SALIR"
+
+[connection signal="pressed" from="VBoxContainer/Salir" to="." method="_on_salir_pressed"]
