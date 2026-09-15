@@ -1,10 +1,11 @@
 extends Node3D
 
 @onready var player = $CharacterBody3D
+@onready var camara = $CharacterBody3D/SpringArm3D/Camera3D
 
 @export var speed = 14.0
 @export var aceleracion_caida = 75.0
-@export var impuslo_salto = 20.0
+@export var impulso_salto = 20.0
 @export var fuerza_dash = 50.0
 
 signal monedas_cambiaron(cantidad)
@@ -22,21 +23,23 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if contador_monedas == 3:
 		get_tree().reload_current_scene()
-		#get_tree().quit()
 
 func _physics_process(delta: float) -> void:
 	var direction = Vector3.ZERO
+	var delante = camara.global_transform.basis.z
+	var derecha = camara.global_transform.basis.x
 	
 	if Input.is_action_pressed("delante"):
-		direction.z -= 1
+		direction -= delante
 	if Input.is_action_pressed("detrás"):
-		direction.z += 1
+		direction += delante
 	if Input.is_action_pressed("derecha"):
-		direction.x += 1
+		direction += derecha
 	if Input.is_action_pressed("izquierda"):
-		direction.x -= 1
+		direction -= derecha
 	
 	if direction != Vector3.ZERO:
+		direction.y = 0
 		direction = direction.normalized()
 		ultima_direccion = direction
 		$CharacterBody3D/Pivote.basis = Basis.looking_at(direction)
@@ -57,7 +60,7 @@ func _physics_process(delta: float) -> void:
 	if not player.is_on_floor():
 		target_velocity.y = target_velocity.y - (aceleracion_caida * delta)
 		if Input.is_action_just_pressed("salto") and doble_salto == true:
-			target_velocity.y = impuslo_salto
+			target_velocity.y = impulso_salto
 			doble_salto = false
 	
 	player.velocity = target_velocity
@@ -65,7 +68,7 @@ func _physics_process(delta: float) -> void:
 	if player.is_on_floor():
 		doble_salto = true
 		if Input.is_action_just_pressed("salto"):
-			target_velocity.y = impuslo_salto
+			target_velocity.y = impulso_salto
 	
 	player.move_and_slide()
 
